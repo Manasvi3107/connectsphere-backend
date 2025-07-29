@@ -11,7 +11,7 @@
   const httpServer = createServer(app);
 
   // Import Routes
-  const mediaRoutes = require('./routes/mediaRoutes');
+  //const mediaRoutes = require('./routes/mediaRoutes');
   const authRoutes = require('./routes/authRoutes');
   const postRoutes = require('./routes/postRoutes');
   const messageRoutes = require('./routes/messageRoutes');
@@ -28,7 +28,7 @@
   });
 
   // Mount API routes
-  app.use('/api/media', mediaRoutes);
+  //app.use('/api/media', mediaRoutes);
   app.use('/api/auth', authRoutes);
   app.use('/api/posts', postRoutes);
   app.use('/api/messages', messageRoutes);
