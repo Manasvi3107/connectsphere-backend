@@ -65,3 +65,12 @@ exports.updateProfile = async (req, res) => {
     res.status(500).json({ message: 'Server error updating profile' });
   }
 };
+
+module.exports = {
+  getProfile,
+  updateProfile,
+  getAllUsers,
+  updateLastActive,
+  searchUsers, // ✅ Include this here
+};
+
