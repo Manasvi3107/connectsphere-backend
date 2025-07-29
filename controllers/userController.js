@@ -1,7 +1,7 @@
 const User = require('../models/User');
 
 // Get logged-in user's profile
-exports.getProfile = async (req, res) => {
+const getProfile = async (req, res) => {
   try {
     const user = await User.findById(req.user._id).select('-password');
     res.status(200).json(user);
@@ -29,7 +29,7 @@ const searchUsers = async (req, res) => {
 
 
 // Fetch all users except the logged-in user
-exports.getAllUsers = async (req, res) => {
+const getAllUsers = async (req, res) => {
   try {
     const users = await User.find({ _id: { $ne: req.user._id } }).select('name email profilePicture');
     res.json(users);
@@ -39,7 +39,7 @@ exports.getAllUsers = async (req, res) => {
   }
 };
 
-exports.updateLastActive = async (req, res) => {
+const updateLastActive = async (req, res) => {
   try {
     await User.findByIdAndUpdate(req.user._id, { lastActive: Date.now() });
     res.json({ success: true });
@@ -51,7 +51,7 @@ exports.updateLastActive = async (req, res) => {
 
 
 // Update logged-in user's profile
-exports.updateProfile = async (req, res) => {
+const updateProfile = async (req, res) => {
   const { name, bio, profilePicture } = req.body;
   try {
     const updatedUser = await User.findByIdAndUpdate(
@@ -71,6 +71,5 @@ module.exports = {
   updateProfile,
   getAllUsers,
   updateLastActive,
-  searchUsers, // ✅ Include this here
+  searchUsers,
 };
-
