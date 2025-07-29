@@ -14,6 +14,7 @@ router.post('/', protect, sendMessage);
 router.get('/', protect, getChats);
 
 // GET: Get messages with a specific user
-router.get('/:userId', protect, getMessagesWithUser);
+router.get('/chat/:userId', protect, getMessagesWithUser);
+
 
 module.exports = router;

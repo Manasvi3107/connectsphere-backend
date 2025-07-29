@@ -1,19 +1,21 @@
 const express = require('express');
 const router = express.Router();
-const { getProfile, updateProfile, getAllUsers , searchUsers} = require('../controllers/userController');
+const {
+  getProfile,
+  updateProfile,
+  getAllUsers,
+  searchUsers
+} = require('../controllers/userController');
 const { protect } = require('../middleware/authMiddleware');
 const User = require('../models/User');
 
-
-// Route to get logged-in user's profile
+// Specific routes first
 router.get('/me', protect, getProfile);
-
-// Route to update logged-in user's profile
 router.put('/me', protect, updateProfile);
+router.get('/search', protect, searchUsers); // ✅ Place before `/:id`
 
-// Route to get all users except the logged-in user
+// General routes
 router.get('/', protect, getAllUsers);
-router.get('/search', protect, searchUsers); // ✅ fixed
 
 // ✅ Follow a user
 router.put('/:id/follow', protect, async (req, res) => {

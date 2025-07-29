@@ -31,7 +31,7 @@ router.post('/', protect, upload.array('attachments'), sendMessage);
 router.get('/', protect, getChats);
 
 // GET: Get messages with a specific user
-router.get('/:userId', protect, getMessagesWithUser);
+router.get('/chat/:userId', protect, getMessagesWithUser);
 
 // PATCH: Edit message
 router.patch('/:id', protect, editMessage);
