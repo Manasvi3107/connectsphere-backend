@@ -18,7 +18,7 @@
   const userRoutes = require('./routes/userRoutes');
 
   // Middleware
-  app.use(cors({ origin: 'http://localhost:3000' }));
+  app.use(cors({ origin: process.env.CLIENT_URL || '*' }));
   app.use(express.json());
     
   // ✅ Root Test Route
@@ -33,15 +33,6 @@
   app.use('/api/posts', postRoutes);
   app.use('/api/messages', messageRoutes);
   app.use('/api/users', userRoutes);
-
-  // ✅ Optional: Serve frontend build in production
-  if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, '../frontend/build')));
-
-    app.get('*', (req, res) =>
-      res.sendFile(path.resolve(__dirname, '../frontend/build/index.html'))
-    );
-  }
 
   mongoose
     .connect(process.env.MONGO_URI, {
